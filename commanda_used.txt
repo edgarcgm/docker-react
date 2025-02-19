@@ -1,0 +1,19 @@
+//Dev Phase
+sudo docker build -f Dockerfile.dev -t demo/prod_web:latest .
+sudo docker run -p 3000:3000  demo/prod_web:latest
+sudo docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app  demo/prod_web:latest
+
+sudo docker compose up
+sudo docker run -it demo/prod_web:latest npm run test
+sudo docker compose up --build
+
+//Prod Phase
+sudo docker build -t prod/prod_web:latest .
+sudo docker run -p 8080:80 prod/prod_web:latest
+
+//Upload to Github
+git init
+git add .
+git commit -m "initial commit"
+git remote add origin git@github.com:edgarcgm/docker-react.git
+git push -u origin main
