@@ -6,6 +6,7 @@ sudo docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app  demo/prod_web:
 sudo docker compose up
 sudo docker run -it demo/prod_web:latest npm run test
 sudo docker compose up --build
+sudo docker compose -f docker-compose-dev.yml up
 
 //Prod Phase
 sudo docker build -t prod/prod_web:latest .
